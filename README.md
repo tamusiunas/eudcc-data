@@ -1,3 +1,3 @@
 # eudcc-data
 
-## Repository with the historical valuesets and trust-list available at https://qa.dgc.idsec.se/tp/
+## Repository with the repository with the trust-list history files provided by [https://qa.dgc.idsec.se/tp/](https://qa.dgc.idsec.se/tp/)
