@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''#!/bin/bash
 sed -e "s/\\./\\n/g" production/trust-list | split -l 1
-trust_list_count=$(base64 -d xab | jq | egrep " Â \"..\": {" | wc -l)
+trust_list_count=$(base64 -d xab | jq | egrep "  \\"..\\": {" | wc -l)
 echo "trust_list_count"
 echo $trust_list_count
 if [[ $trust_list_count -gt 48 ]]
