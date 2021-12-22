@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Check') {
       steps {
-        sh '''pwd
-ls -l
-find .
-sed -e "s/\\./\\n/g" production/trust-list-production | split -l 1
+        sh '''sed -e "s/\\./\\n/g" production/trust-list | split -l 1
 trust_list_count=$(base64 -d xab | jq | egrep "   \\"..\\": {" | wc -l)
 if [[ $trust_list_count -gt 48 ]]
 then
