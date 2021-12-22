@@ -5,8 +5,9 @@ pipeline {
       steps {
         sh '''#!/bin/bash
 sed -e "s/\\./\\n/g" production/trust-list | split -l 1
-ls -l
-trust_list_count=$(base64 -d xab | jq | egrep "  \\"..\\": {" )
+trust_list_count=$(base64 -d xab | jq | egrep "  \\"..\\": {" | wc -l )
+echo "trust_list_count"
+echo $trust_list_count
 if [[ $trust_list_count -gt 48 ]]
 then
 # base64 -d xab | jq | mailx -v -s "[INFO] trust-list production: $trust_list_count countries" -S smtp-use-starttls -S smtp-auth=login -S smtp=smtp://smtp.gmail.com:587 -S from="fabricio.tamusiunas@gmail.com" -S smtp-auth-user="fabricio.tamusiunas@gmail.com" -S smtp-auth-password="ahfdjzplegzpdjhi" fabricio.tamusiunas@gmail.com
