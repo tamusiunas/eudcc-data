@@ -3,8 +3,9 @@ pipeline {
   stages {
     stage('Check') {
       steps {
-        sh '''sed -e "s/\\./\\n/g" production/trust-list | split -l 1
-trust_list_count=$(base64 -d xab | jq | egrep "   \\"..\\": {" | wc -l)
+        sh '''PATH=$PATH:/var/media/external_storage/opt/bin
+sed -e "s/\\./\\n/g" production/trust-list | split -l 1
+trust_list_count=$(base64 -d xab | jq | egrep " � \\"..\\": {" | wc -l)
 if [[ $trust_list_count -gt 48 ]]
 then
   cp trust-list-production-$date /storage/eudcc-data/production
